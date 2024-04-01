@@ -29,16 +29,31 @@ export default function Home() {
         </RenderModel>
       </div>
 
-      <div className="relative w-full h-screen flex flex-col items-center justify-center">
+      {/* <div className="relative w-full h-screen flex flex-col items-center justify-center">
         <div className="absolute flex flex-col items-center text-center top-1/2 sm:top-[60%] left-1/2 -translate-y-1/2 -translate-x-1/2">
-          <h1 className="font-bold  text-6xl xs:text-7xl sm:text-8xl  lg:text-9xl text-accent">
-            CodeBucks
+          <h1 className="font-bold  text-6xl xs:text-7xl sm:text-8xl  lg:text-8xl text-accent">
+            About Me!
           </h1>
-          <p className="font-light text-foreground text-lg">
+          <p className="font-light text-foreground text-2xl ">
             Meet the wizard behind this portfolio
           </p>
         </div>
-      </div>
+      </div> */}
+
+<div className="relative w-full h-screen flex flex-col items-center justify-center">
+  <div className="absolute flex flex-col items-center text-center top-2/3 sm:top-[70%] left-1/2 -translate-y-1/2 -translate-x-1/2">
+    <h1 className="font-bold text-6xl xs:text-7xl sm:text-8xl lg:text-8xl text-accent">
+      About Me!
+    </h1>
+    <div className="top-1/2">
+
+    <p className="font-light text-foreground text-2xl top-12">
+      Meet the wizard behind this portfolio
+    </p>
+    </div>
+  </div>
+</div>
+
 
       <AboutDetails />
     </>

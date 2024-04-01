@@ -20,15 +20,10 @@ export default function Contact() {
       <article className="relative w-full flex flex-col items-center justify-center py-8 sm:py-0 space-y-8">
         <div className="flex flex-col items-center justify-center space-y-6 w-full sm:w-3/4">
           <h1 className="text-accent font-semibold text-center text-4xl capitalize">
-            summon the wizard
-          </h1>
+              Get In Touch
+           </h1>
           <p className="text-center font-light text-sm xs:text-base">
-            Step into the circle of enchantment and weave your words into the
-            fabric of the cosmos. Whether you seek to conjure collaborations,
-            unlock mysteries, or simply share tales of adventure, your messages
-            are treasured scrolls within this realm. Use the form below to send
-            your missives through the ethereal network, and await the whisper of
-            magic in response.
+          Thank you for taking the time to explore my portfolio. If you have any inquiries, opportunities, or collaboration proposals, please don't hesitate to reach out. I'm passionate about crafting innovative software solutions and I am eager to discuss how we can work together to bring your ideas to life.
           </p>
         </div>
         <Form />
