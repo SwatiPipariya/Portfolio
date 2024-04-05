@@ -1,8 +1,56 @@
+
 import React from "react";
+// import {React, useEffect ,useState} from "react";
 import ItemLayout from "./ItemLayout";
 import Link from "next/link";
+import { useClient } from "next/client";
+  //       const response = await axios.get('https://api.github.com/users/SwatiPipariya/contributions');
 
+// import axios from "axios";
 const AboutDetails = () => {
+  useClient();
+  const [state, setState] = React.useState(null);
+
+  //       const response = await axios.get('https://api.github.com/users/SwatiPipariya/contributions');
+  const [streak, setStreak] = useState(null);
+
+  React.useEffect(() => {
+    const fetchStreak = async () => {
+      try {
+        const response = await axios.get('https://api.github.com/users/SwatiPipariya/events');
+        const { streak } = response.data;
+        setStreak(streak);
+      } catch (error) {
+        console.error('Error fetching streak:', error);
+      }
+    };
+
+    fetchStreak();
+
+    // Polling every 10 minutes to update streak
+    const interval = setInterval(fetchStreak, 600000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
+
+
+
+  const calculateStreak = (contributions) => {
+    // Your logic to calculate streak from contributions data
+    // Example: Check consecutive days with contributions
+    let streak = 0;
+    for (let i = 0; i < contributions.length; i++) {
+      if (contributions[i].count > 0) {
+        streak++;
+      } else {
+        break;
+      }
+    }
+    return streak;
+  };
+
   return (
     <section className="py-15 w-full">
       <div className="grid grid-cols-12 gap-4 xs:gap-6  md:gap-8 w-full">
@@ -12,71 +60,50 @@ const AboutDetails = () => {
           }
         >
           <h2 className="  text-xl md:text-2xl text-left w-full capitalize">
-            {/* Architect of Enchantment */}
             Full Stack Web Developer
           </h2>
+          {/* <h2>Current Streak: {streak}</h2> */}
           <p className="font-light  text-xs sm:text-sm md:text-base   ">
-            {/* My journey in web development is powered by an array of mystical
-            tools and languages, with JavaScript casting the core of my
-            enchantments. I wield frameworks like React.js and Next.js with
-            precision, crafting seamless portals (websites) that connect realms
-            (users) across the digital universe. The ancient arts of the
-            Jamstack empower me to create fast, secure, and dynamic experiences,
-            while my design skills ensure every creation is not only functional
-            but visually captivating. Join me as I continue to explore new
-            spells and technologies to shape the future of the web. */}
-           Dedicated and Passionate software developer proficient in HTML, CSS, JavaScript, React.js, 
-           Node.js, Express.js, MongoDB, Java, Hibernate, and MySQL. Skilled in crafting 
-           dynamic user interfaces and building robust backend systems. Passionate about 
-           solving complex problems with clean, maintainable code. Eager to contribute expertise 
-           to innovative projects and continuously expand skill set in a collaborative work environment.
-           I approach each project with enthusiasm, creativity, and attention to detail, striving to 
-           deliver high-quality solutions that exceed expectations. As a collaborative team member, I 
-           enjoy sharing my knowledge and learning from others to achieve collective success in every endeavor.
+            Dedicated and Passionate software developer proficient in HTML, CSS, JavaScript, React.js,
+            Node.js, Express.js, MongoDB, Java, Hibernate, and MySQL. Skilled in crafting
+            dynamic user interfaces and building robust backend systems. Passionate about
+            solving complex problems with clean, maintainable code. Eager to contribute expertise
+            to innovative projects and continuously expand skill set in a collaborative work environment.
+            I approach each project with enthusiasm, creativity, and attention to detail, striving to
+            deliver high-quality solutions that exceed expectations. As a collaborative team member, I
+            enjoy sharing my knowledge and learning from others to achieve collective success in every endeavor.
           </p>
+          <h2 className="  text-xl md:text-2xl text-left w-full capitalize">
+          {streak}
+          </h2>
         </ItemLayout>
 
-        {/* <ItemLayout
-          className={" col-span-full xs:col-span-6 lg:col-span-4 text-accent"}
-        >
-          <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-            25+ <sub className="font-semibold text-base">clients</sub>
-          </p>
-        </ItemLayout> */}
+        {/* ****************Language progress bars**************** */}
 
-        {/* <ItemLayout
-          className={"col-span-full xs:col-span-6 lg:col-span-4 text-accent"}
-        >
-          <p className="font-semibold w-full text-left text-2xl sm:text-5xl">
-            4+{" "}
-            <sub className="font-semibold text-base">years of experience</sub>
-          </p>
-        </ItemLayout> */}
-
-        <ItemLayout
-          className={"col-span-full sm:col-span-6 md:col-span-4 !p-0"}
-        >
-          {/* <img
-            className="w-full h-auto"
-            src={`${process.env.NEXT_PUBLIC_GITHUB_STATS_URL}/api/top-langs?username=codebucks27&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false`}
-            alt="Portfolio"
-            loading="lazy"
-          /> */}
+        <ItemLayout className={"col-span-full sm:col-span-6 md:col-span-4 !p-0"}>
           <img
             className="w-full h-auto"
-            src="https://github-readme-stats.vercel.app/api?username=anuraghazra"
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false"
+            alt="Portfolio"
+            loading="lazy"
+          /> 
+      
+          
+         
+        </ItemLayout>
+
+         {/* ****************Git Status******************* */}
+         <ItemLayout
+          className={"col-span-full md:col-span-8 !p-0"}
+        >
+
+          <img
+            className="w-full h-auto"
+            src="https://github-readme-stats.vercel.app/api?username=SwatiPipariya&show_icons=true&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false"
             alt="Portfolio"
             loading="lazy"
           />
-        </ItemLayout>
-
-        <ItemLayout className={"col-span-full md:col-span-8 !p-0"}>
-          <img
-            className="w-full h-auto"
-            src={`${process.env.NEXT_PUBLIC_GITHUB_STATS_URL}/api?username=codebucks27&theme=transparent&hide_border=true&title_color=FEFE5B&text_color=FFFFFF&icon_color=FEFE5B&text_bold=false`}
-            alt="Portfolio"
-            loading="lazy"
-          />
+          
         </ItemLayout>
 
         <ItemLayout className={"col-span-full"}>
@@ -87,16 +114,25 @@ const AboutDetails = () => {
             loading="lazy"
           />
         </ItemLayout>
-
+          {/* ****************Github streak*********** */}
         <ItemLayout className={"col-span-full md:col-span-6 !p-0"}>
-          <img
+          {/* <img
             className="w-full h-auto"
-            src={`${process.env.NEXT_PUBLIC_GITHUB_STREAK_STATS_URL}?user=SwatiPipariya&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B`}
+            src="https://github-readme-streak-stats.herokuapp.com?user=Swati%20Pipariya&theme=dark&hide_border=true&background=EB545400&ring=FFE40C&currStreakLabel=E0EB09" alt="GitHub Streak" 
             alt="Portfolio"
             loading="lazy"
-          />
+          /> */}
 
         </ItemLayout>
+        
+        {/* <ItemLayout className={"col-span-full md:col-span-6 !p-0"}>
+          <img
+            className="w-full h-auto"
+            src={`${process.env.NEXT_PUBLIC_GITHUB_STREAK_STATS_URL}?user=codebucks27&theme=dark&hide_border=true&type=svg&background=EB545400&ring=FEFE5B&currStreakLabel=FEFE5B`}
+            alt="CodeBucks"
+            loading="lazy"
+          />
+        </ItemLayout> */}
 
         <ItemLayout className={"col-span-full md:col-span-6 !p-0"}>
           <Link
