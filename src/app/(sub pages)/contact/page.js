@@ -23,7 +23,7 @@ export default function Contact() {
               Get In Touch
            </h1>
           <p className="text-center font-light text-sm xs:text-base">
-          Thank you for taking the time to explore my portfolio. If you have any inquiries, opportunities, or collaboration proposals, please don't hesitate to reach out. I'm passionate about crafting innovative software solutions and I am eager to discuss how we can work together to bring your ideas to life.
+          Thank you for taking the time to explore my portfolio. If you have any inquiries, opportunities, or collaboration proposals, please do not hesitate to reach out. I am passionate about crafting innovative software solutions and I am eager to discuss how we can work together to bring your ideas to life.
           </p>
         </div>
         <Form />
